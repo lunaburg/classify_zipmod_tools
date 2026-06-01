@@ -1,0 +1,16 @@
+<RCC>
+  <qresource prefix="drawable">
+    <file>res/white_pixel.png</file>
+    <file>res/text_browser.png</file>
+    <file>res/background.png</file>
+    <file>res/text_browser_border.png</file>
+  </qresource>
+  <qresource prefix="font">
+    <file>res/font/minecraft_standard.otf</file>
+    <file>res/font/Impact.ttf</file>
+    <file>res/font/字魂无外润黑体.ttf</file>
+    <file>res/font/pixel_alpha.ttf</file>
+    <file>res/font/pixel_arial.otf</file>
+    <file>res/font/pixel_gama.ttf</file>
+  </qresource>
+</RCC>
