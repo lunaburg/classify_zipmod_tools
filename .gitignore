@@ -14,6 +14,11 @@ build/
 dist/
 *.egg-info/
 *.spec
+!apps/pyside6/classify_zipmod_tools.spec
+node_modules/
+release/
+*.tsbuildinfo
+.npm-cache/
 
 # Test and tooling caches
 .pytest_cache/
@@ -24,6 +29,8 @@ htmlcov/
 
 # Local test input samples
 test/input/
+test/mods/
+test/output/
 
 # Local IDE/editor files
 .idea/
@@ -36,6 +43,9 @@ test/input/
 *.tmp
 *.bak
 ~$*
+
+# Runtime configuration
+config/
 
 # OS metadata
 .DS_Store

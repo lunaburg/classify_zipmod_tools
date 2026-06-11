@@ -1,0 +1,2 @@
+# The initial bridge uses only Python standard library modules.
+# Add backend dependencies here when migrating the existing business logic.
