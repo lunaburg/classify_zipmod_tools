@@ -1,17 +1,25 @@
-# classify_zipmod_tools
+# Star_Manager
 
-Electron + Vue desktop app with a local Python HTTP backend for classifying HS2 / AIS card dependencies and related zipmod resources.
+Electron + Vue desktop app with a local Python HTTP backend for managing HS2 / AIS card dependencies and related zipmod resources.
+
+## Project Context
+
+Star_Manager is a mod manager designed for the HS2 game. Its main managed targets are `zipmod` and `png` files, and future versions may also handle `unity3d` files.
+
+- `zipmod` files are compressed archives.
+- A typical `zipmod` contains `unity3d` model files, CSV files that record model metadata such as model name and body part, and an XML file that records mod author information.
+- `png` files are commonly used as character cards under the HS2 user data structure.
 
 ## Current Structure
 
-The project currently has one maintained application under `apps/`. The former `apps/pyside6` app has been removed intentionally.
+The project currently has one maintained application under `apps/`.
 
 ```text
 apps/
 |-- electron/                 # Electron main process and preload
 |-- src/                      # Vue renderer UI
 |-- backend/app/              # Local Python HTTP service
-|-- backend/classify_zipmod/  # Python business logic
+|-- backend/star_manager/     # Python business logic
 |-- scripts/                  # Developer helper scripts
 |-- dist/                     # Vite build output
 |-- node_modules/             # Installed Node dependencies
@@ -22,6 +30,16 @@ apps/
 ```
 
 Repository-level files such as this README and `AGENTS.md` stay at the root. Application files should stay inside `apps/`.
+
+## Test Environment
+
+The repository includes an HS2 test game environment under `test/hs2`. Future development and verification can use this test folder directly.
+
+Important HS2 test directories and expected roles:
+
+- `test/hs2/mods`: stores `zipmod` files.
+- `test/hs2/abdata`: usually stores `unity3d` files.
+- `test/hs2/UserData/char`: stores character cards, usually `png` files.
 
 ## Commands
 
@@ -77,10 +95,10 @@ Important backend files:
 
 - `backend/app/server.py`
 - `backend/app/bridge.py`
-- `backend/classify_zipmod/services/mod_workflow.py`
-- `backend/classify_zipmod/core/card_parser.py`
-- `backend/classify_zipmod/core/zipmod_utils.py`
-- `backend/classify_zipmod/tools/mod_sorter.py`
+- `backend/star_manager/services/mod_workflow.py`
+- `backend/star_manager/core/card_parser.py`
+- `backend/star_manager/core/zipmod_utils.py`
+- `backend/star_manager/tools/mod_sorter.py`
 
 ## Notes
 

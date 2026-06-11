@@ -10,15 +10,18 @@ env/
 ENV/
 
 # Build and packaging output
-build/
-dist/
+apps/build/
+apps/dist/
+apps/release/
 *.egg-info/
 *.spec
-!apps/pyside6/classify_zipmod_tools.spec
-node_modules/
-release/
 *.tsbuildinfo
+
+# Node/Electron dependencies and caches
+node_modules/
+apps/node_modules/
 .npm-cache/
+apps/.npm-cache/
 
 # Test and tooling caches
 .pytest_cache/
@@ -27,10 +30,8 @@ release/
 .coverage
 htmlcov/
 
-# Local test input samples
-test/input/
-test/mods/
-test/output/
+# Local test environment and samples
+test/
 
 # Local IDE/editor files
 .idea/
@@ -42,6 +43,7 @@ test/output/
 *.log
 *.tmp
 *.bak
+*.old
 ~$*
 
 # Runtime configuration

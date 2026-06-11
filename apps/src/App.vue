@@ -282,7 +282,7 @@ onMounted(() => {
       <div class="brand">
         <div class="mark">Z</div>
         <div>
-          <strong>classify_zipmod_tools</strong>
+          <strong>Star_Manager</strong>
           <span>{{ t.brandSubtitle }}</span>
         </div>
       </div>

@@ -1,6 +1,6 @@
 from io import BytesIO
 
-from classify_zipmod.utils.binary_reader import BinaryReader
+from star_manager.utils.binary_reader import BinaryReader
 
 
 AIS_CARD_MARKERS = {"\u3010AIS_Chara\u3011", "\u3010AIS_Clothes\u3011"}

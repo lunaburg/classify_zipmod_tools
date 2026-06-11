@@ -11,9 +11,9 @@ BACKEND_ROOT = Path(__file__).resolve().parents[1]
 if str(BACKEND_ROOT) not in sys.path:
     sys.path.insert(0, str(BACKEND_ROOT))
 
-from classify_zipmod.core.config import ConfigDataList
-from classify_zipmod.core.zipmod_utils import is_hs2_game_dir
-from classify_zipmod.services.mod_workflow import ExtractOptions, WorkflowReporter, extract_mods, search_ais_cards, sort_mods
+from star_manager.core.config import ConfigDataList
+from star_manager.core.zipmod_utils import is_hs2_game_dir
+from star_manager.services.mod_workflow import ExtractOptions, WorkflowReporter, extract_mods, search_ais_cards, sort_mods
 
 
 @dataclass
@@ -77,7 +77,7 @@ def create_health_payload() -> dict:
     return {
         "ok": True,
         "message": "Python backend is ready.",
-        "service": "classify_zipmod_tools",
+        "service": "Star_Manager",
         "transport": "http-api",
     }
 

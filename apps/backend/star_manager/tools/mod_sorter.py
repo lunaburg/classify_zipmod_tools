@@ -2,7 +2,7 @@ import argparse
 import os
 import shutil
 
-from classify_zipmod.core.zipmod_utils import (
+from star_manager.core.zipmod_utils import (
     ERROR_CORRUPTED,
     ERROR_NO_MANIFEST,
     ERROR_NO_VALUE,

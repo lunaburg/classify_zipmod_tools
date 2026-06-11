@@ -38,7 +38,7 @@ Important files:
 - `src/`: Vue renderer.
 - `backend/app/server.py`: local HTTP backend entry.
 - `backend/app/bridge.py`: task bridge.
-- `backend/classify_zipmod/`: Electron-owned Python business package.
+- `backend/star_manager/`: Electron-owned Python business package.
 
 Common commands:
 
@@ -73,9 +73,9 @@ npm run dev
 
 ## Backend Boundary
 
-Electron calls `backend/app/server.py`, which imports local modules from `backend/classify_zipmod/`.
+Electron calls `backend/app/server.py`, which imports local modules from `backend/star_manager/`.
 
-Because `apps/pyside6` has been removed, the Electron app must not depend on any deleted PySide6 paths such as `apps/pyside6/script/app`. Shared or migrated behavior belongs inside `apps/backend/classify_zipmod/`.
+Because `apps/pyside6` has been removed, the Electron app must not depend on any deleted PySide6 paths such as `apps/pyside6/script/app`. Shared or migrated behavior belongs inside `apps/backend/star_manager/`.
 
 ## Maintenance Notes
 

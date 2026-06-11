@@ -1,17 +1,43 @@
 {
-  "name": "classify-zipmod-electron",
+  "name": "star-manager",
   "version": "0.1.0",
   "private": true,
-  "description": "Electron + Vue + Python rewrite scaffold for classify_zipmod_tools.",
+  "description": "Electron + Vue + Python desktop app for Star_Manager.",
   "main": "electron/main.cjs",
   "type": "module",
   "scripts": {
     "dev": "concurrently -k \"vite --host 127.0.0.1\" \"wait-on http://127.0.0.1:5173 && set ELECTRON_RUN_AS_NODE=&& set ELECTRON_RENDERER_URL=http://127.0.0.1:5173&& electron .\"",
     "build": "vite build",
+    "build:backend": "conda run -n mm_env python -m PyInstaller --noconfirm --clean --onefile --name star_manager_backend --distpath build/backend --workpath build/pyinstaller --specpath build --paths backend --paths backend/app backend/app/server.py",
+    "package:win": "npm run build && npm run build:backend && electron-builder --win dir",
     "preview": "vite preview --host 127.0.0.1",
     "electron": "npm run build && set ELECTRON_RUN_AS_NODE=&& electron .",
     "python:dev": "node scripts/python.cjs dev",
     "check:python": "node scripts/python.cjs check"
+  },
+  "build": {
+    "appId": "com.lunaburg.star-manager",
+    "productName": "Star_Manager",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/**/*",
+      "backend/**/*",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "build/backend/star_manager_backend.exe",
+        "to": "backend/star_manager_backend.exe"
+      }
+    ],
+    "win": {
+      "target": [
+        "dir"
+      ]
+    }
   },
   "dependencies": {
     "@vitejs/plugin-vue": "^5.2.4",
@@ -21,6 +47,7 @@
   "devDependencies": {
     "concurrently": "^9.1.2",
     "electron": "^35.2.1",
+    "electron-builder": "^26.0.12",
     "wait-on": "^8.0.3"
   }
 }

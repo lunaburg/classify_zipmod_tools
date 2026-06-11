@@ -2,9 +2,9 @@ import os
 import shutil
 from dataclasses import dataclass, field
 
-from classify_zipmod.core.card_parser import extract_mod_guids_from_card, is_ais_card
-from classify_zipmod.core.config import ConfigDataList
-from classify_zipmod.core.zipmod_utils import (
+from star_manager.core.card_parser import extract_mod_guids_from_card, is_ais_card
+from star_manager.core.config import ConfigDataList
+from star_manager.core.zipmod_utils import (
     copy_zipmods_preserving_tree,
     find_files,
     find_missing_abdata_paths,
@@ -13,7 +13,7 @@ from classify_zipmod.core.zipmod_utils import (
     is_hs2_game_dir,
     move_zipmods_preserving_tree,
 )
-from classify_zipmod.tools.mod_sorter import sort_zipmod
+from star_manager.tools.mod_sorter import sort_zipmod
 
 
 @dataclass
@@ -227,7 +227,7 @@ def copy_missing_abdata(game_dir, output_dir, reporter=None):
 
 
 def sort_mods(input_dir, output_dir=None, delete_empty=False, reporter=None):
-    from classify_zipmod.core.zipmod_utils import remove_empty_dirs
+    from star_manager.core.zipmod_utils import remove_empty_dirs
 
     if not os.path.isdir(input_dir):
         raise ValueError("No input directory selected.")

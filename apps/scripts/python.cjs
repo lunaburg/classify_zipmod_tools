@@ -4,7 +4,7 @@ const path = require("node:path");
 const mode = process.argv[2] || "check";
 const root = path.join(__dirname, "..");
 const pythonExecutable = process.env.PYTHON_EXECUTABLE;
-const condaEnv = process.env.CLASSIFY_ZIPMOD_CONDA_ENV || "mm_env";
+const condaEnv = process.env.STAR_MANAGER_CONDA_ENV || "mm_env";
 
 const pythonArgsByMode = {
   check: ["-m", "py_compile", "backend/app/server.py", "backend/app/bridge.py"],

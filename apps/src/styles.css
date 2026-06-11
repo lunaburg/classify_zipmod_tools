@@ -4,14 +4,22 @@
   font-family: "Microsoft YaHei UI", "Microsoft YaHei", "Segoe UI", sans-serif;
 }
 
+html,
+body,
+#app {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
 * {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  min-width: 900px;
-  min-height: 640px;
+  min-width: 1180px;
+  min-height: 780px;
   background:
     radial-gradient(circle at 8% 12%, rgba(41, 199, 199, 0.22), transparent 30%),
     radial-gradient(circle at 94% 84%, rgba(255, 118, 112, 0.22), transparent 34%),
@@ -25,10 +33,14 @@ select {
 }
 
 .shell {
-  width: min(1180px, calc(100vw - 36px));
-  min-height: calc(100vh - 36px);
-  margin: 18px auto;
+  width: min(1320px, calc(100vw - 32px));
+  height: calc(100vh - 32px);
+  min-height: 748px;
+  margin: 16px auto;
   padding: 18px;
+  display: grid;
+  grid-template-rows: 48px minmax(0, 1fr) 184px;
+  gap: 16px;
 }
 
 .topbar,
@@ -42,7 +54,6 @@ select {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 16px;
 }
 
 .brand {
@@ -103,15 +114,14 @@ select {
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
   gap: 18px;
-  height: 430px;
+  min-height: 0;
 }
 
 .bottom-grid {
   display: grid;
   grid-template-columns: 1.15fr 0.85fr;
   gap: 18px;
-  margin-top: 18px;
-  min-height: 166px;
+  min-height: 0;
 }
 
 .panel {
@@ -162,6 +172,7 @@ h2 {
 
 .preview-panel {
   padding-bottom: 16px;
+  overflow: hidden;
 }
 
 .preview-title span {
@@ -170,7 +181,7 @@ h2 {
 }
 
 .card-drop {
-  height: 150px;
+  height: clamp(124px, 21vh, 150px);
   display: grid;
   place-items: center;
   margin: 16px;
@@ -231,6 +242,8 @@ h2 {
 
 .tree {
   display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
   white-space: pre;
   margin: 0 16px;
   padding: 12px 14px;

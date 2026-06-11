@@ -63,9 +63,9 @@ class RequestHandler(BaseHTTPRequestHandler):
 
 
 def main() -> None:
-    port = int(os.environ.get("CLASSIFY_ZIPMOD_BACKEND_PORT", "8765"))
+    port = int(os.environ.get("STAR_MANAGER_BACKEND_PORT", "8765"))
     server = ThreadingHTTPServer(("127.0.0.1", port), RequestHandler)
-    print(f"classify_zipmod backend listening on http://127.0.0.1:{port}", flush=True)
+    print(f"Star_Manager backend listening on http://127.0.0.1:{port}", flush=True)
     server.serve_forever()
 
 

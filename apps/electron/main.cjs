@@ -5,16 +5,16 @@ const path = require("node:path");
 
 const rendererUrl = process.env.ELECTRON_RENDERER_URL || "";
 const isDev = Boolean(rendererUrl);
-const backendPort = process.env.CLASSIFY_ZIPMOD_BACKEND_PORT || "8765";
+const backendPort = process.env.STAR_MANAGER_BACKEND_PORT || "8765";
 let backendProcess = null;
 
 function createWindow() {
   const window = new BrowserWindow({
-    width: 980,
-    height: 720,
-    minWidth: 900,
-    minHeight: 640,
-    title: "classify_zipmod_tools",
+    width: 1420,
+    height: 900,
+    minWidth: 1180,
+    minHeight: 780,
+    title: "Star_Manager",
     backgroundColor: "#f3efe4",
     webPreferences: {
       preload: path.join(__dirname, "preload.cjs"),
@@ -33,18 +33,21 @@ function createWindow() {
 function startPythonBackend() {
   const backendEntry = path.join(__dirname, "../backend/app/server.py");
   const backendRoot = path.join(__dirname, "../backend");
+  const backendExecutable = resolveBackendExecutable();
   const pythonExecutable = resolvePythonExecutable();
-  const command = pythonExecutable || "conda";
-  const args = pythonExecutable
+  const command = backendExecutable || pythonExecutable || "conda";
+  const args = backendExecutable
+    ? []
+    : pythonExecutable
     ? [backendEntry]
-    : ["run", "-n", process.env.CLASSIFY_ZIPMOD_CONDA_ENV || "mm_env", "python", backendEntry];
+    : ["run", "-n", process.env.STAR_MANAGER_CONDA_ENV || "mm_env", "python", backendEntry];
 
   console.log(`[backend] starting: ${command} ${args.join(" ")}`);
   backendProcess = spawn(command, args, {
-    cwd: backendRoot,
+    cwd: backendExecutable ? path.dirname(backendExecutable) : backendRoot,
     env: {
       ...process.env,
-      CLASSIFY_ZIPMOD_BACKEND_PORT: backendPort
+      STAR_MANAGER_BACKEND_PORT: backendPort
     },
     stdio: "inherit",
     windowsHide: true
@@ -57,6 +60,18 @@ function startPythonBackend() {
   backendProcess.on("exit", (code, signal) => {
     console.error(`[backend] exited code=${code} signal=${signal}`);
   });
+}
+
+function resolveBackendExecutable() {
+  const candidates = [
+    process.env.STAR_MANAGER_BACKEND_EXE,
+    app.isPackaged
+      ? path.join(process.resourcesPath, "backend", "star_manager_backend.exe")
+      : "",
+    path.join(__dirname, "../build/backend/star_manager_backend.exe")
+  ].filter(Boolean);
+
+  return candidates.find((candidate) => fs.existsSync(candidate)) || "";
 }
 
 function resolvePythonExecutable() {
